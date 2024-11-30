@@ -19,7 +19,7 @@ def main_menu(manager):
         elif choice == "2":
             manager.manage_tasks()
         elif choice == "3":
-            manage_contacts()
+            manager.manage_contacts()
         elif choice == "4":
             manage_financial_records()
         elif choice == "5":

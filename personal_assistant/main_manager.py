@@ -1,11 +1,13 @@
 from notes import NotesManager
 from tasks import TasksManager
+from contacts import ContactsManager
 
 
 class MainManager:
     def __init__(self):
         self.notes_manager = NotesManager()
         self.tasks_manager = TasksManager()
+        self.contacts_manager = ContactsManager()
 
     @staticmethod
     def show_notes_menu():
@@ -73,6 +75,38 @@ class MainManager:
             elif choice == "7":
                 self.tasks_manager.import_tasks_from_csv()
             elif choice == "8":
+                break
+            else:
+                print("Ошибка: неверный выбор. Попробуйте снова.")
+
+    @staticmethod
+    def show_contacts_menu():
+        print("\nУправление контактами:")
+        print("1. Добавить новый контакт")
+        print("2. Найти контакт")
+        print("3. Редактировать контакт")
+        print("4. Удалить контакт")
+        print("5. Экспорт контактов в CSV")
+        print("6. Импорт контактов из CSV")
+        print("7. Выход")
+
+    def manage_contacts(self):
+        while True:
+            self.show_contacts_menu()
+            choice = input("Выберите действие: ")
+            if choice == "1":
+                self.contacts_manager.add_contact()
+            elif choice == "2":
+                self.contacts_manager.search_contacts()
+            elif choice == "3":
+                self.contacts_manager.edit_contact()
+            elif choice == "4":
+                self.contacts_manager.delete_contact()
+            elif choice == "5":
+                self.contacts_manager.export_contacts_to_csv()
+            elif choice == "6":
+                self.contacts_manager.import_contacts_from_csv()
+            elif choice == "7":
                 break
             else:
                 print("Ошибка: неверный выбор. Попробуйте снова.")
