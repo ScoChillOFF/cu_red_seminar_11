@@ -21,7 +21,7 @@ def main_menu(manager):
         elif choice == "3":
             manager.manage_contacts()
         elif choice == "4":
-            manage_financial_records()
+            manager.manage_finances()
         elif choice == "5":
             manage_calculator()
         elif choice == "6":

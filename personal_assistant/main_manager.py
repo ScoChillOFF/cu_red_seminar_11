@@ -1,6 +1,7 @@
 from notes import NotesManager
 from tasks import TasksManager
 from contacts import ContactsManager
+from financial_records import FinanceManager
 
 
 class MainManager:
@@ -8,6 +9,7 @@ class MainManager:
         self.notes_manager = NotesManager()
         self.tasks_manager = TasksManager()
         self.contacts_manager = ContactsManager()
+        self.finance_manager = FinanceManager()
 
     @staticmethod
     def show_notes_menu():
@@ -107,6 +109,35 @@ class MainManager:
             elif choice == "6":
                 self.contacts_manager.import_contacts_from_csv()
             elif choice == "7":
+                break
+            else:
+                print("Ошибка: неверный выбор. Попробуйте снова.")
+
+    @staticmethod
+    def show_finance_menu():
+        print("\nУправление финансовыми записями:")
+        print("1. Добавить новую финансовую запись")
+        print("2. Просмотр финансовых записей")
+        print("3. Генерация отчёта о финансовой активности")
+        print("4. Экспорт финансовых записей в CSV")
+        print("5. Импорт финансовых записей из CSV")
+        print("6. Выход")
+
+    def manage_finances(self):
+        while True:
+            self.show_finance_menu()
+            choice = input("Выберите действие: ")
+            if choice == "1":
+                self.finance_manager.add_record()
+            elif choice == "2":
+                self.finance_manager.filter_records()
+            elif choice == "3":
+                self.finance_manager.generate_report()
+            elif choice == "4":
+                self.finance_manager.export_records_to_csv()
+            elif choice == "5":
+                self.finance_manager.import_records_from_csv()
+            elif choice == "6":
                 break
             else:
                 print("Ошибка: неверный выбор. Попробуйте снова.")
