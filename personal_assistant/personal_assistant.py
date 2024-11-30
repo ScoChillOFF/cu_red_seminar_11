@@ -17,7 +17,7 @@ def main_menu(manager):
         if choice == "1":
             manager.manage_notes()
         elif choice == "2":
-            manage_tasks()
+            manager.manage_tasks()
         elif choice == "3":
             manage_contacts()
         elif choice == "4":
