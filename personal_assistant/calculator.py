@@ -12,4 +12,4 @@ class Calculator:
             except Exception as e:
                 print(f"Ошибка: {str(e)}")
         else:
-            return "Ошибка: недопустимые символы в выражении"
+            print("Ошибка: недопустимые символы в выражении")

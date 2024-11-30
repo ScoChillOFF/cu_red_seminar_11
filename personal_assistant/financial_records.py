@@ -72,8 +72,10 @@ class FinanceManager:
         print(f"Запись с ID {record_id} успешно добавлена.")
 
     def filter_records(self):
-        filter_choice = input("Фильтровать по дате или категории? (введите 'дата' или 'категория'): ").strip().lower()
-        if filter_choice == "дата":
+        filter_choice = input("Фильтровать по дате или категории? (введите 'дата' или 'категория' или оставьте пустым): ").strip().lower()
+        if not filter_choice:
+            filtered = self.records
+        elif filter_choice == "дата":
             date_from = input("Введите начальную дату (ДД-ММ-ГГГГ): ").strip()
             date_to = input("Введите конечную дату (ДД-ММ-ГГГГ): ").strip()
             try:
