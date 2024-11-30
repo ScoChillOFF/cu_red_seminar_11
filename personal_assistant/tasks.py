@@ -35,7 +35,7 @@ class Task:
 
 
 class TasksManager:
-    def __init__(self, file_name):
+    def __init__(self, file_name="tasks.json"):
         self.file_name = file_name
         self.tasks = self.load_tasks()
 
