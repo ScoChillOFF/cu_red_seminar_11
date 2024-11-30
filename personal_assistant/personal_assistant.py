@@ -23,7 +23,7 @@ def main_menu(manager):
         elif choice == "4":
             manager.manage_finances()
         elif choice == "5":
-            manage_calculator()
+            manager.manage_calculator()
         elif choice == "6":
             print("Спасибо за использование Персонального помощника! До свидания!")
             break

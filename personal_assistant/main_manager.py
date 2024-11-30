@@ -2,6 +2,7 @@ from notes import NotesManager
 from tasks import TasksManager
 from contacts import ContactsManager
 from financial_records import FinanceManager
+from calculator import Calculator
 
 
 class MainManager:
@@ -10,6 +11,7 @@ class MainManager:
         self.tasks_manager = TasksManager()
         self.contacts_manager = ContactsManager()
         self.finance_manager = FinanceManager()
+        self.calculator = Calculator()
 
     @staticmethod
     def show_notes_menu():
@@ -138,6 +140,24 @@ class MainManager:
             elif choice == "5":
                 self.finance_manager.import_records_from_csv()
             elif choice == "6":
+                break
+            else:
+                print("Ошибка: неверный выбор. Попробуйте снова.")
+
+    @staticmethod
+    def show_calculator_menu():
+        print("\nВыберите операцию:")
+        print("1. Ввести арифметическое выражение")
+        print("2. Выход")
+
+    def manage_calculator(self):
+        while True:
+            self.show_calculator_menu()
+            choice = input("Выберите действие: ")
+            if choice == "1":
+                expression = input("Введите арифметическое выражение: ")
+                self.calculator.calculate(expression)
+            elif choice == "2":
                 break
             else:
                 print("Ошибка: неверный выбор. Попробуйте снова.")
