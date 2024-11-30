@@ -1,4 +1,7 @@
-def main_menu():
+from main_manager import MainManager
+
+
+def main_menu(manager):
     while True:
         print("Добро пожаловать в Персональный помощник!")
         print("Выберите действие:")
@@ -12,7 +15,7 @@ def main_menu():
         choice = input("Введите номер действия: ")
 
         if choice == "1":
-            manage_notes()
+            manager.manage_notes()
         elif choice == "2":
             manage_tasks()
         elif choice == "3":
@@ -49,4 +52,5 @@ def manage_calculator():
 
 
 if __name__ == "__main__":
-    main_menu()
+    manager = MainManager()
+    main_menu(manager)
