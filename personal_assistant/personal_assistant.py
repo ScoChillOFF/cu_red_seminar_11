@@ -3,7 +3,7 @@ from main_manager import MainManager
 
 def main_menu(manager):
     while True:
-        print("Добро пожаловать в Персональный помощник!")
+        print("\nДобро пожаловать в Персональный помощник!")
         print("Выберите действие:")
         print("1. Управление заметками")
         print("2. Управление задачами")
@@ -29,26 +29,6 @@ def main_menu(manager):
             break
         else:
             print("Неверный ввод. Пожалуйста, выберите номер из списка.")
-
-
-def manage_notes():
-    print("Вы выбрали управление заметками.")
-
-
-def manage_tasks():
-    print("Вы выбрали управление задачами.")
-
-
-def manage_contacts():
-    print("Вы выбрали управление контактами.")
-
-
-def manage_financial_records():
-    print("Вы выбрали управление финансовыми записями.")
-
-
-def manage_calculator():
-    print("Вы выбрали калькулятор.")
 
 
 if __name__ == "__main__":

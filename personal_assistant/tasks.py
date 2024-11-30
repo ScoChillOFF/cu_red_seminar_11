@@ -66,16 +66,16 @@ class TasksManager:
 
     def add_task(self):
         task_id = max([task.id for task in self.tasks], default=0) + 1
-        title = input("Введите краткое описание задачи: ").strip()
+        title = input("Введите название задачи: ").strip()
         if not title:
-            print("Ошибка: описание задачи не может быть пустым.")
+            print("Ошибка: название задачи не может быть пустым.")
             return
-        description = input("Введите подробное описание задачи: ").strip()
-        priority = input("Введите приоритет задачи (Высокий, Средний, Низкий): ").strip()
+        description = input("Введите описание задачи: ").strip()
+        priority = input("Введите приоритет задачи (Высокий/Средний/Низкий): ").strip()
         if priority not in ["Высокий", "Средний", "Низкий"]:
             print("Ошибка: неверный приоритет. Установлен приоритет по умолчанию — 'Средний'.")
             priority = "Средний"
-        due_date = input("Введите срок выполнения задачи (ДД-ММ-ГГГГ) или оставьте пустым: ").strip()
+        due_date = input("Введите срок выполнения (в формате ДД-ММ-ГГГГ): ").strip()
         if due_date:
             try:
                 datetime.strptime(due_date, "%d-%m-%Y")
@@ -85,7 +85,7 @@ class TasksManager:
         new_task = Task(task_id, title, description, priority=priority, due_date=due_date)
         self.tasks.append(new_task)
         self.save_tasks()
-        print(f"Задача с ID {task_id} успешно добавлена.")
+        print(f"Задача успешно добавлена!")
 
     def view_tasks(self, filter_by=None, filter_value=None):
         if not self.tasks:

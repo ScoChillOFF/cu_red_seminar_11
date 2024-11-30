@@ -79,12 +79,12 @@ class FinanceManager:
             date_from = input("Введите начальную дату (ДД-ММ-ГГГГ): ").strip()
             date_to = input("Введите конечную дату (ДД-ММ-ГГГГ): ").strip()
             try:
-                datetime.strptime(date_from, "%d-%m-%Y")
-                datetime.strptime(date_to, "%d-%m-%Y")
+                date_from_dt = datetime.strptime(date_from, "%d-%m-%Y")
+                date_to_dt = datetime.strptime(date_to, "%d-%m-%Y")
             except ValueError:
                 print("Ошибка: неверный формат даты.")
                 return
-            filtered = [record for record in self.records if date_from <= record.date <= date_to]
+            filtered = [record for record in self.records if date_from_dt <= datetime.strptime(record.date, "%d-%m-%Y") <= date_to_dt]
         elif filter_choice == "категория":
             category = input("Введите категорию для фильтрации: ").strip()
             filtered = [record for record in self.records if category.lower() in record.category.lower()]
@@ -122,6 +122,11 @@ class FinanceManager:
         print(f"Доходы: {income}")
         print(f"Расходы: {expense}")
         print(f"Баланс: {balance}")
+
+        file_name = f"report_{date_from}_{date_to}.csv"
+        df = pd.DataFrame([record.to_dict() for record in self.records])
+        df.to_csv(file_name, index=False, encoding="utf-8")
+        print(f"Подробная информация сохранена в файл {file_name}.")
 
     def export_records_to_csv(self):
         if not self.records:
