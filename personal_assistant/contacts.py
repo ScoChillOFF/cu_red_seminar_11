@@ -1,4 +1,6 @@
 import json
+import re
+
 import pandas as pd
 
 
@@ -43,6 +45,14 @@ class ContactsManager:
         with open(self.file_name, "w", encoding="utf-8") as file:
             json.dump([contact.to_dict() for contact in self.contacts], file, indent=4, ensure_ascii=False)
 
+    @staticmethod
+    def validate_phone(phone):
+        if not phone:
+            return True
+        if re.fullmatch(r"\+?\d+", phone):
+            return True
+        return False
+
     def add_contact(self):
         contact_id = max([contact.id for contact in self.contacts], default=0) + 1
         name = input("Введите имя контакта: ").strip()
@@ -50,6 +60,9 @@ class ContactsManager:
             print("Ошибка: имя контакта не может быть пустым.")
             return
         phone = input("Введите номер телефона (или оставьте пустым): ").strip()
+        if not self.validate_phone(phone):
+            print("Ошибка: номер телефона должен содержать только цифры и может начинаться с +.")
+            return
         email = input("Введите адрес электронной почты (или оставьте пустым): ").strip()
         new_contact = Contact(contact_id, name, phone, email)
         self.contacts.append(new_contact)
@@ -77,6 +90,9 @@ class ContactsManager:
             new_name = input(f"Введите новое имя ({contact.name}): ").strip()
             new_phone = input(f"Введите новый номер телефона ({contact.phone}): ").strip()
             new_email = input(f"Введите новый адрес электронной почты ({contact.email}): ").strip()
+            if new_phone and not self.validate_phone(new_phone):
+                print("Ошибка: номер телефона должен содержать только цифры и может начинаться с +.")
+                return
 
             if new_name:
                 contact.name = new_name
